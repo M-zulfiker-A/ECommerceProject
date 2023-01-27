@@ -4,11 +4,11 @@ import { Toast } from 'react-hot-toast'
 import { useStateContext } from '../context/StateContext'
 import {TiDeleteOutline } from "react-icons/ti"
 import { urlFor } from '../lib/client'
-import Link from 'next/Link'
+import Link from 'next/link'
 
 const Cart = () => {
   const cartRef = useRef();
-  const {totalQuantity , totalPrice , cartItems, setshowCart} = useStateContext()
+  const {totalQuantity , totalPrice , cartItems, setshowCart, toggleCartItemQuantity} = useStateContext()
   return (
     <div className="cart-wrapper">
       <div className='cart-container'>
@@ -39,10 +39,46 @@ const Cart = () => {
                   <h5>{item.name}</h5>
                   <h4>₹{item.price}</h4>
                 </div>
+                <div className='flex bottom'>
+                  <div>
+                    <p className='quantity-desc'>
+                        <span className='minus' onClick={()=>toggleCartItemQuantity(item._id,"dec")}>
+                            <AiOutlineMinus />
+                        </span>
+                        <span className='num' onClick="">
+                            {item.quantity}
+                        </span>
+                        <span className='plus' onClick={()=>toggleCartItemQuantity(item._id,"inc")}>
+                            <AiOutlinePlus />
+                        </span>
+                    </p>
+                  </div>
+                  <button 
+                    className='remove-item'
+                    type='button'
+                    onClick= "">
+                      <TiDeleteOutline />
+                    </button>
+
+                </div>
               </div>
             </div>
           ))}
         </div>
+        {cartItems.length >=1 && 
+        ( 
+        <div className='cart-bottom'>
+          <div className="total">
+            <h3>Subtotal</h3>
+            <h3>₹{totalPrice}</h3>
+          </div>
+          <div className="btn-container">
+            <button className='btn' type='button' onClick="">
+              Pay With Stripe
+            </button>
+          </div>
+        </div>
+        )}
       </div>
     </div>
   )
