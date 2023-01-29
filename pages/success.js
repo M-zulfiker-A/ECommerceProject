@@ -1,6 +1,6 @@
 import React , {useState, useEffect}from 'react'
 import {BsBagCheckFill} from 'react-icons/bs'
-import {Link} from 'next/link'
+import Link from 'next/link'
 import {useRouter} from 'next/router'
 import { useStateContext } from '../context/StateContext'
 import { runFire } from '../lib/utils'
