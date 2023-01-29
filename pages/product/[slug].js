@@ -7,7 +7,7 @@ import { useStateContext } from '../../context/StateContext'
 const ProductDetails = ({products , product}) => {
     const {image , name , description, price } = product
     const [index, setIndex] = useState(0)
-    const {qty, IncQty , decQty, onAdd ,setShowCart} = useStateContext()
+    const {qty, IncQty , decQty, onAdd ,setshowCart} = useStateContext()
     const handleBuyNow = ()=>{
         onAdd(product,qty)
         setshowCart(true)
@@ -71,8 +71,10 @@ const ProductDetails = ({products , product}) => {
             <div className='marquee'>
                 <div className='maylike-products-container track'>
                     {products.map((item)=>{
-                        return <Product key={item._id}
-                        product = {item} />
+                        return <Product 
+                            key={item._id}
+                            product = {item} 
+                        />
                     })}
                 </div>
             </div>
