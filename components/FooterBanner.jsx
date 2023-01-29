@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { urlFor } from '../lib/client'
 
 const FooterBanner = ({footerBanner : {product , desc , smallText, midText, largeText1, largeText2, discount, saleTime , image , buttonText} }) => {
+  
   return (
     <div className='footer-banner-container'>
       <div className="banner-desc">
@@ -17,7 +18,7 @@ const FooterBanner = ({footerBanner : {product , desc , smallText, midText, larg
             <h3>{midText}</h3>
             <p>{desc}</p>
             <Link href={`product/${product}`}>
-              <button type='button'>{buttonText}</button>
+              <button type='button' className='btn'>{buttonText}</button>
             </Link>
           </div>
           <img

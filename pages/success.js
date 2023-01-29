@@ -1,21 +1,18 @@
 import React , {useState, useEffect}from 'react'
 import {BsBagCheckFill} from 'react-icons/bs'
 import Link from 'next/link'
-import {useRouter} from 'next/router'
 import { useStateContext } from '../context/StateContext'
 import { runFire } from '../lib/utils'
 
 const Success = () => {
-    const {setCartItems , setTotalQuantity,settotalPrice} = useStateContext()
-    const [order , setOrder] = useState(null)
+    const {setCartItmes , settotalQuantity,settotalPrice} = useStateContext()
     useEffect(() => {
       localStorage.clear()
-      setCartItems([])
-      setTotalQuantity(0)
+      setCartItmes([])
+      settotalQuantity(0)
       settotalPrice(0)
       runFire()
     }, [])
-    
   return (
     <div className='succes-wrapper'>
         <div className='success'>
@@ -24,7 +21,7 @@ const Success = () => {
             </p>
             <h2>Thank you for your order</h2>
             <p className='email-msg'>Check your mail box for reciept</p>
-            <p className='description'>Fpr ANy queries please reach out to US
+            <p className='description'>For any queries please reach out to us.
                 <a className='email' href='mailto:muhammedzulfikererm+ecommerceapp@gmail.com'>zstoreofficial@gmail.com</a>
             </p>
             <Link href="/">

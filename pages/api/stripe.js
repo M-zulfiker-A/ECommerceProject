@@ -1,9 +1,8 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`)
 
 export default async function handler(req, res) {
-    console.log(req.body)
     if (req.method === 'POST') {
         const params = {
             submit_type : 'pay',
@@ -38,9 +37,13 @@ export default async function handler(req, res) {
         }
       try {
         // Create Checkout Sessions from body params.
+        
         const session = await stripe.checkout.sessions.create(params);
+        console.log("success")
+        
         res.status(200).json(session)
       } catch (err) {
+        console.warn("Error")
         res.status(err.statusCode || 500).json(err.message);
       }
     } else {

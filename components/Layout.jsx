@@ -8,6 +8,7 @@ const Layout = ({children}) => {
     <div className='layout'>
       <Head>
         <title>Z Store</title>
+        <meta httpEquiv="Content-Security-Policy" content="font-src 'self' https://*.jsdelivr.net"></meta>
       </Head>
       <header>
         <Navbar />
