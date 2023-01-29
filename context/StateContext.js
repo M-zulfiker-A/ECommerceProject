@@ -62,6 +62,7 @@ export const StateContext = ({children})=>{
             }else{
                 let updatedProducts = cartItems.filter((item)=>item._id!==foundProduct._id)
                 setCartItmes(updatedProducts)
+                settotalQuantity(prevQty => prevQty - 1 < 0 ? 0 : prevQty-1)
                 settotalPrice(prevPrice => prevPrice - foundProduct.price)
             }
         }else if(value ==="inc"){
@@ -78,9 +79,17 @@ export const StateContext = ({children})=>{
         }
     }
 
+    const toggleCartRemove= (id)=>{
+        let foundProduct = cartItems.find(item => item._id === id )
+        let updatedProducts = cartItems.filter((item)=>item._id!==id)
+        setCartItmes(updatedProducts)
+        settotalQuantity(prevQty => prevQty - 1 < 0 ? 0 : prevQty-1)
+        settotalPrice(prevPrice => prevPrice - foundProduct.price)
+    }
+
     return (
         <Context.Provider value={
-            {qty,totalQuantity,showCart,cartItems,totalPrice,decQty,IncQty,onAdd,setshowCart,toggleCartItemQuantity}
+            {qty,totalQuantity,showCart,cartItems,totalPrice,setCartItmes,decQty,IncQty,onAdd,setshowCart,toggleCartItemQuantity,toggleCartRemove,settotalQuantity,settotalPrice}
         }>
             {children}
         </Context.Provider>
